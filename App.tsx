@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, FlatList, Modal } from 'react-native';
-import useTaskStore from './src/store/taskStore';
+import useTaskStore, { Task } from './src/store/taskStore';
 import { PrimeryButton } from './src/components/primaryButton/primaryButton';
 import { TaskCard } from './src/components/taskCard/taskCard';
 import { pixel } from './src/utils/pixel';
@@ -8,7 +8,7 @@ import { CreateTask } from './src/components/createTask/createTask';
 
 const App: React.FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [currentTask, setCurrentTask] = useState<any | null>(null);
+  const [currentTask, setCurrentTask] = useState<Task | null>(null);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -26,7 +26,7 @@ const App: React.FC = () => {
     setCurrentTask(null);
   };
 
-  const handleEditTask = (task: any) => {
+  const handleEditTask = (task: Task) => {
     setCurrentTask(task);
     setTitle(task.title);
     setDescription(task.description);
